@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="parent" abstract="true" version="1.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+    
+    <properties>
+        <property name="someJobProp" value="someJobPropValue"/>
+    </properties>
+    
+    <listeners>
+        <listener ref="myJobListener"/>
+    </listeners>
+
+    <step id="mySimpleStep" abstract="true">
+        <properties>
+            <property name="javax.transaction.global.timeout" value="1800"/>
+        </properties>
+        <listeners>
+            <listener ref="myStepListener"/>
+        </listeners>
+    </step>
+
+    <step id="myChunkStep" abstract="true">
+        <properties>
+            <property name="javax.transaction.global.timeout" value="900"/>
+            <property name="jberet.local-tx" value="true"/>
+        </properties>
+        <listeners>
+            <listener ref="myStepListener"/>
+            <listener ref="myChunkListener"/>
+        </listeners>
+        <chunk item-count="3"/>
+    </step>
+
+</job>

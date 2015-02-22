@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="child" parent="parent" jsl-name="parent" version="1.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+    
+    <step id="simpleStep" next="chunkStep" parent="mySimpleStep" jsl-name="parent">
+        <batchlet ref="myBatchlet"/>
+    </step>
+
+    <step id="chunkStep" parent="myChunkStep" jsl-name="parent">
+        <chunk>
+            <reader ref="myItemReader"/>
+            <writer ref="myItemWriter"/>
+        </chunk>
+    </step>
+    
+</job>
